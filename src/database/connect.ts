@@ -1,3 +1,3 @@
 import { createConnection } from 'typeorm';
 
-createConnection().then(()=> console.log('funfou'));
+createConnection().then(()=> console.log('🚀 DB connect'));

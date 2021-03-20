@@ -2,7 +2,11 @@ import 'reflect-metadata';
 import express from 'express';
 import routes from './routes';
 
+import PipedriveController from './app/Controllers/PipedriveController';
+
 import './database/connect';
+
+setInterval(PipedriveController.execute, 60000)
 
 const app = express();
 
