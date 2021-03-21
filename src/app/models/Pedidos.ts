@@ -1,24 +1,15 @@
-import { Entity, PrimaryColumn , Column} from 'typeorm'
+import { Entity,  Column, PrimaryGeneratedColumn} from 'typeorm'
 
 @Entity('pedidos')
 class Pedidos {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    title: string;
+    data: string;
 
     @Column()
-    formatted_value: string;
-
-    @Column()
-    status: string;
-
-    @Column()
-    add_time: string;
-    
-    @Column()
-    update_time: string;
+    valor: string;
 }
 
 export default Pedidos;

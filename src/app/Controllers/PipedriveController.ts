@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import PedidoRepository from "../Repositories/PedidoRepository";
+import BlingController from "./BlingController";
 import PipedriveConnection from "../services/PipedriveConnection";
 
 
@@ -10,8 +11,8 @@ class PipedriveController{
         const dealsWon = await controller.getAllDeals({status: 'won'},function(context: object){
             return context;
         });
-
-        PedidoRepository.execute(dealsWon);
+        BlingController.create(dealsWon);
+        //PedidoRepository.execute(dealsWon);
     }
 
     async list(req: Request, res: Response){

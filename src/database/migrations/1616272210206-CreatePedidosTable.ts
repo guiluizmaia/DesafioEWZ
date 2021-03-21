@@ -10,27 +10,16 @@ export class CreatePedidosTable1616272210206 implements MigrationInterface {
                     name: 'id',
                     type: 'int',
                     isPrimary: true,
+                    
                 },
                 {
-                    name: 'title',
+                    name: 'data',
                     type: 'varchar',
                 },
                 {
-                    name: 'formatted_value',
+                    name: 'valor',
                     type: 'varchar',
-                },
-                {
-                    name: 'status',
-                    type: 'varchar',
-                },
-                {
-                    name: 'add_time',
-                    type: 'varchar',
-                },
-                {
-                    name: 'update_time',
-                    type: 'varchar',
-                },
+                }
             ],            
         }));
     }

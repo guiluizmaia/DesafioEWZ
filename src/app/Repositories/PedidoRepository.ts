@@ -2,39 +2,30 @@ import { getRepository } from 'typeorm';
 import Pedidos from "../models/Pedidos";
 
 class PedidoRepository{
-    async execute(dealsWon: any){
+    async execute(blingDados: any){
         const repository = getRepository(Pedidos);
 
-        for(const deal of dealsWon.data){
-            const { id, title, formatted_value, status, add_time, update_time } = deal;
-            
-            const pedidoExists = await repository.findOne({where: {id}})
-            if(!pedidoExists){
-                const pedido = repository.create({ id, title, formatted_value, status, add_time: add_time.slice(0, 10), update_time: update_time.slice(0, 10) });
-                await repository.save(pedido);
-                console.log(pedido, "Criado")              
-            }else{
-                pedidoExists.title = title; 
-                pedidoExists.formatted_value = formatted_value;
-                pedidoExists.status = status;
-                pedidoExists.add_time = add_time.slice(0, 10);
-                pedidoExists.update_time = update_time.slice(0, 10);
+        for(const dado of blingDados){
+            const { totalprodutos, data, numero } = dado.pedido;
 
-                await repository.save(pedidoExists);
-                console.log(pedidoExists, "Atualizado");
-            }  
+            const pedidoExist = await repository.findOne({id: numero})
+            if(!pedidoExist){            
+                const pedido = await repository.create({id: numero, data, valor: totalprodutos});
+                await repository.save(pedido);
+                console.log(pedido);
+            }
         }  
     }
 
     async list(){
         const repository = getRepository(Pedidos);
-        const allDataDecres = await repository.createQueryBuilder("data").orderBy("update_time", "DESC").getMany();
+        const allDataDecres = await repository.createQueryBuilder("data").orderBy("data", "DESC").getMany();
         return allDataDecres;         
     }
 
     async listData(data: string){
         const repository = getRepository(Pedidos);
-        const allData = await repository.find({where: {update_time: data}})
+        const allData = await repository.find({where: {data: data}})
         return allData;
     }
 }
