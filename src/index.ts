@@ -6,11 +6,11 @@ import PipedriveController from './app/Controllers/PipedriveController';
 
 import './database/connect';
 
-setInterval(PipedriveController.execute, 60000)
+//setInterval(PipedriveController.execute, 6000)
 
 const app = express();
 
 app.use(express.json());
 app.use(routes);
 
-app.listen(3000);
+app.listen(3333);
