@@ -12,7 +12,6 @@ class PedidoRepository{
             if(!pedidoExist){            
                 const pedido = await repository.create({id: numero, data, valor: totalprodutos});
                 await repository.save(pedido);
-                console.log(pedido);
             }
         }  
     }

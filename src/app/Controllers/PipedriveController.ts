@@ -11,18 +11,21 @@ class PipedriveController{
         const dealsWon = await controller.getAllDeals({status: 'won'},function(context: object){
             return context;
         });
+        
         BlingController.create(dealsWon);
-        //PedidoRepository.execute(dealsWon);
     }
 
     async list(req: Request, res: Response){
         const allDataDecres = await PedidoRepository.list();
+
         return res.status(200).json(allDataDecres);
     }
 
     async listData(req: Request, res: Response){
         const { data } = req.params;
+
         const allData = await PedidoRepository.listData(data);
+        
         return res.status(200).json(allData);
     }
 }
