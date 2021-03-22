@@ -6,7 +6,7 @@ class BlingController{
     async create(dealsWon: any){
         for(const deal of dealsWon.data){
             const { id, user_id, title, value } = deal;
-            const XML = '<pedido><cliente><nome>'+ user_id + '</nome></cliente><item><codigo>' + id + '</codigo><descricao>' + title + '</descricao><qtde>1</qtde><vlr_unit>' + value + '</vlr_unit></item></pedido>'
+            const XML = '<pedido><cliente><nome>'+ user_id.name + '</nome></cliente><item><codigo>' + id + '</codigo><descricao>' + title + '</descricao><qtde>1</qtde><vlr_unit>' + value + '</vlr_unit></item></pedido>'
             axios.post('https://bling.com.br/Api/v2/pedido/json&apikey=' + this.API_KEY + '&xml=' + XML)
             .then(function(response){
                 console.log("Funcionou");
